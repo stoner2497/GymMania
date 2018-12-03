@@ -1,0 +1,39 @@
+{
+  "name": "gym_admin_new",
+  "version": "1.0.0",
+  "description": "all in one app for fitness",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stoner2497/GymMania.git"
+  },
+  "author": "sahil shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stoner2497/GymMania/issues"
+  },
+  "homepage": "https://github.com/stoner2497/GymMania#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.4.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.3.14",
+    "nodemailer": "^4.7.0",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "passport": "^0.4.0",
+    "passport-custom": "^1.0.5",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "popups": "^1.1.3",
+    "xoauth2": "^1.2.0"
+  }
+}
