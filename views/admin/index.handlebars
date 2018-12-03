@@ -1,0 +1,27 @@
+<link href="../../public/css/admin-login.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+    <div class="full-content-center">
+        <div class="box bounceInLeft animated">
+            {{!-- <img src="../../public/img/logo.png" class="logo" alt="image not found"> --}}
+            <h2 style="color:white">Gym_Mania</h2>
+            <h3 class="text-center">Admin LogIn</h3>
+            <form class="form" action="login" id="log_in" method="post">
+                <div class="form-group">
+                    <label class="sr-only"></label>
+                    <input type="email" class="form-control" name="email" value="{{email}}" placeholder="Email"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only"></label>
+                    <input type="password" class="form-control" name="password" value="{{password}}" placeholder="Password"
+                        required>
+                </div>
+                <input type="submit" class="btn btn-block btn-warning" value="Log In">
+            </form>
+            <p class="text-right"><a href="forgetpassword" class="text-warning forgot_color">Forgot Password?</a></p>
+            <p class="text-right"><a href="register" class="text-success forgot_color">Not Yet Register,Register
+                    here</a></p>
+        </div>
+    </div>
+</div>
