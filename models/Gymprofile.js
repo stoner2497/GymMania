@@ -3,17 +3,17 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "users"
-  },
-  handle: {
+  admin: {
     type: String,
-    required: true,
-    max: 40
+    required: true
   },
-  company: {
-    type: String
+  gymname: {
+    type: String,
+    required: true
+  },
+  contact: {
+    type: Number,
+    required: true
   },
   website: {
     type: String
@@ -21,9 +21,17 @@ const ProfileSchema = new Schema({
   location: {
     type: String
   },
-  status: {
+  city: {
     type: String,
     required: true
+  },
+  pincode: {
+    type: Number,
+    required: true
+  },
+  Terms: {
+    type: String
+    // required: true
   },
   social: {
     youtube: {

@@ -1,44 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const Admin = require("../models/Admin");
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 const xoauth2 = require("xoauth2");
+const urlCrypt = require("url-crypt")(
+  '~{ry*I)==yU/]9<7DPk!Hj"R#:-/Z7(hTBnlRS=4CXF'
+);
+const passport = require("passport");
+const { ensureAuthenticated } = require("../helpers/auth");
+
+const regexemail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regexpasswordNum = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+const regexpasswordspecial = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+const Admin = require("../models/Admin");
 router.get("/login", async (req, res) => {
   res.render("admin/index");
 });
 
-router.post("/login", async (req, res) => {
-  const errors = {};
-  const email = req.body.email;
-  const password = req.body.password;
-
-  Admin.findOne({ email }).then(admin => {
-    if (!admin) {
-      errors.userexist = " user not matched";
-      res.render("admin/index", {
-        errors: errors
-      });
-      console.log(errors);
-    } else {
-      bcrypt.compare(password, admin.password).then(isMatch => {
-        if (isMatch) {
-          res.render("admin/dashboard", {
-            admin: admin.name
-          });
-          console.log(admin);
-        } else {
-          errors.password = "password not matched";
-          res.render("admin/index", {
-            errors: errors
-          });
-          console.log(errors);
-        }
-      });
-    }
-  });
+router.post("/login", async (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "dashboard",
+    failureRedirect: "login",
+    failureFlash: true
+  })(req, res, next);
 });
 
 router.get("/register", async (req, res) => {
@@ -49,10 +35,8 @@ router.post("/register", async (req, res) => {
   const errors = {};
   Admin.findOne({ email: req.body.email }).then(admin => {
     if (admin) {
-      errors.userexist = "user exist";
-      res.render("admin/register", {
-        errors: errors
-      });
+      req.flash("error_msg", "user exist");
+      res.render("admin/register");
     } else {
       const newAdmin = new Admin({
         name: req.body.name,
@@ -64,9 +48,8 @@ router.post("/register", async (req, res) => {
           if (err) throw err;
           newAdmin.password = hash;
           newAdmin.save().then(admin => {
-            res.render("admin/index", {
-              admin: admin
-            });
+            req.flash("success_msg", "registerd successfully!!!");
+            res.redirect("login");
           });
         });
       });
@@ -84,7 +67,14 @@ router.post("/forgetpassword", async (req, res) => {
     if (!admin) {
       errors.adminnotfound = "admin doesent exist";
       console.log(errors);
+      res.end();
     } else {
+      const payload = {
+        emai: admin.email
+      };
+      const base64 = urlCrypt.cryptObj(payload);
+      const registrationUrl =
+        "http://" + req.headers.host + "/admin/newpassword" + "  " + base64;
       const transporter = nodemailer.createTransport(
         smtpTransport({
           service: "gmail",
@@ -104,14 +94,14 @@ router.post("/forgetpassword", async (req, res) => {
         from: "gymmania <sahilshah22269@gmail.com>",
         to: admin.email,
         subject: "gymmania",
-        text: "hello world"
+        html: "<a href=" + registrationUrl + ">That was easy!</a>"
       };
 
       transporter.sendMail(mailOptions, (err, res) => {
         if (err) throw err;
         console.log(`email sent ${res}`);
       });
-      res.render("admin/index");
+      res.redirect("admin/index");
     }
   });
 });
@@ -120,30 +110,14 @@ router.get("/newpassword", (req, res) => {
   res.render("admin/newpassword");
 });
 
-router.post("/newpassword", (req, res) => {
-  const errors = {};
-  Admin.findOneAndUpdate({ email: req.body.email }).then(admin => {
-    if (!admin) {
-      errors.adminnotexist = "admin not exist";
-      console.log("admin exist");
-    }
-    const newpassword = new Admin({
-      password: req.body.password
-    });
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newpassword.password, salt, (err, hash) => {
-        if (err) throw err;
-        newpassword.password = hash;
-        newpassword.save().then(admin => {
-          res.render("admin/index");
-        });
-      });
-    });
-  });
+router.get("/dashboard", ensureAuthenticated, async (req, res) => {
+  res.render("admin/dashboard");
 });
 
-router.get("/dashboard", async (req, res) => {
-  res.render("admin/dashboard");
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "you are logged out");
+  res.redirect("login");
 });
 
 module.exports = router;

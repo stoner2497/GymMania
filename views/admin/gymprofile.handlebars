@@ -1,0 +1,227 @@
+<aside class="right-side right-padding">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <!--section starts-->
+        <h2>ClubInfo</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="dashboard">
+                    <i class="fa fa-fw fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="gymprofile">GymProfile</a>
+            </li>
+        </ol>
+    </section>
+    <!--section ends-->
+    <div class="content">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">ClubInfo</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                    <div class="col-md-6 col-sm-6 col-lg-6">
+                        {{#if profile}}
+                        <i style="color:red" class="fa fa-trash-o" aria-hidden="true" data-toggle="modal" data-target="#delete"></i>
+
+                        <i style="color:darkturquoise" class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="modal"
+                            data-target="#myModal"></i>
+                        {{#each profile}}
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Header</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="edit" method="post">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-user" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" name="gymname" value="{{gymname}}"
+                                                        placeholder="GymName" aria-describedby="sizing-addon3" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-phone" aria-hidden="true"></i></span>
+                                                    <input type="tel" class="form-control" name="contact" value="{{contact}}"
+                                                        placeholder="contact" aria-describedby="sizing-addon3" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-link" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" name="website" value="{{website}}"
+                                                        placeholder="website" aria-describedby="sizing-addon3" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-location-arrow" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" name="location" value="{{location}}"
+                                                        placeholder="address" aria-describedby="sizing-addon3" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" name="city" value="{{city}}"
+                                                        placeholder="city" aria-describedby="sizing-addon3" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group input-group-md">
+                                                    <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i
+                                                            class="fa fa-map-signs" aria-hidden="true"></i></span>
+                                                    <input type="number" class="form-control" name="pincode" value="{{pincode}}"
+                                                        placeholder="pincode" aria-describedby="sizing-addon3" required>
+                                                </div>
+                                            </div>
+                                            <input type="submit" value="submit">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div id="delete" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Are You Sure You Want to Delete</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="delete" method="post">
+                                            <input type="submit" class="btn btn-danger" value="Delete">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="2">Title</th>
+                                    <th scope="col" colspan="2">Data</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {{#each profile}}
+                                <tr>
+                                    <td colspan="2"><b>GymName</b></td>
+                                    <td colspan="2">{{gymname}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Contact</b></td>
+                                    <td colspan="2">{{contact}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Address</b></td>
+                                    <td colspan="2">{{location}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>City</b></td>
+                                    <td colspan="2">{{city}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Pincode</b></td>
+                                    <td colspan="2">{{pincode}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Website</b></td>
+                                    <td colspan="2">{{website}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+
+                        </table>
+                    </div>
+                    {{else}}
+                    <form class="form-horizantal " action="gymprofile" method="post">
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-user"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="gymname" value="{{gymname}}" placeholder="GymName"
+                                    aria-describedby="sizing-addon3" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-phone"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="contact" value="{{contact}}" placeholder="contact"
+                                    aria-describedby="sizing-addon3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-link"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="website" value="{{website}}" placeholder="website"
+                                    aria-describedby="sizing-addon3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-location-arrow"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="location" value="{{location}}"
+                                    placeholder="address" aria-describedby="sizing-addon3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-map-marker"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="city" value="{{city}}" placeholder="city"
+                                    aria-describedby="sizing-addon3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-md">
+                                <span style="color:black;" class="input-group-addon " id="sizing-addon3"><i class="fa fa-map-signs"
+                                        aria-hidden="true"></i></span>
+                                <input type="number" class="form-control" name="pincode" value="{{pincode}}"
+                                    placeholder="pincode" aria-describedby="sizing-addon3" required>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="submit">
+                        <input type="reset" class="btn btn-danger" value="reset">
+                    </form>
+                    {{/if}}
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.content -->
+</aside>

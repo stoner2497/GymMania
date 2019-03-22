@@ -1,0 +1,29 @@
+{{#if success_msg }}
+<div style="    width: 30%;
+    text-align: center;
+    margin-left: 36.8%;
+    margin-top: 1%;" class="alert alert-success alert-sm">
+    {{success_msg}}
+</div>
+
+{{/if}}
+
+{{#if error_msg }}
+<div style="    width: 30%;
+    text-align: center;
+    margin-left: 36.8%;
+    margin-top: 1%;" class="alert alert-warning">
+    {{error_msg}}
+</div>
+
+{{/if}}
+
+{{#each errors}}
+<div style="    width: 30%;
+    text-align: center;
+    margin-left: 36.8%;
+    margin-top: 1%;" class="alert alert-warning">
+    {{text}}
+
+</div>
+{{/each}}
