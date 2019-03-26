@@ -4,12 +4,13 @@ const { ensureAuthenticated } = require("../helpers/auth");
 const multer = require("../config/multer");
 const router = express.Router();
 
-router.get("/packages", ensureAuthenticated, (req, res) => {
-  Packages.find({}).then(pack => {
-    res.render("admin/packages", {
-      pack: pack
-    });
-  });
+router.get("/events", ensureAuthenticated, (req, res) => {
+  // Packages.find({}).then(pack => {
+  //     res.render("admin/packages", {
+  //         pack: pack
+  //     });
+  // });
+  res.render("admin/events");
 });
 
 router.post("/packages", ensureAuthenticated, (req, res) => {

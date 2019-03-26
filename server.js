@@ -24,10 +24,7 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
@@ -86,7 +83,10 @@ app.use(methodOverride("_method"));
 //index route
 
 //using routes
-app.use("/admin", admin, profile, package);
+const event = require("./routes/events");
+const courses = require("./routes/courses");
+
+app.use("/admin", admin, profile, package, event, courses);
 
 app.listen(port, () => {
   console.log(`the server is runing on this ${port} shit...!!!`);
