@@ -4,43 +4,23 @@ const { ensureAuthenticated } = require("../helpers/auth");
 const multer = require("../config/multer");
 const router = express.Router();
 
+const Schedule = require("../models/Schedule");
+
 router.get("/courses", ensureAuthenticated, (req, res) => {
-  // Packages.find({}).then(pack => {
-  //     res.render("admin/packages", {
-  //         pack: pack
-  //     });
-  // });
   res.render("admin/courses");
 });
 
-router.post("/packages", ensureAuthenticated, (req, res) => {
-  let errors = [];
-  let alph = /^[a-zA-Z]+$/;
-  let period = req.body.period;
-  if (alph.test(req.body.packageName) === false) {
-    errors.push({ text: "please enter proper packageName" });
-  }
-  if (alph.test(req.body.description) === false) {
-    errors.push({ text: "please enter correct description" });
-  }
-  if (errors.length > 0) {
-    res.render("admin/packages", {
-      errors: errors
-    });
-  } else {
-    const packa = new Packages({
-      admin: req.user.id,
-      unique_code: req.body.unique_code,
-      packageName: req.body.packageName,
-      description: req.body.description,
-      amount: req.body.amount,
-      period: period
-    });
-    packa.save().then(() => {
-      req.flash("success_msg", "package added succesfully");
-      res.redirect("packages");
-    });
-  }
+router.post("/schedule", ensureAuthenticated, (req, res) => {
+  const sched = new Schedule({
+    Day: req.body.Day,
+    from: req.body.from,
+    to: req.body.to,
+    Courses: req.body.Courses,
+    Room: req.body.Room,
+    Trainers: req.body.Trainers,
+    description: req.body.description
+  });
+  console.log(sched);
 });
 
 router.post("/edit", ensureAuthenticated, (req, res) => {
