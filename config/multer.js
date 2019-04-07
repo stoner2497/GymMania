@@ -9,10 +9,5 @@ module.exports = multer({
     }
     cb(null, true);
   },
-  fileName: (req, file, cb) => {
-    imageName = file.originalname;
-    imageName += Date.now;
-    cb(null, imageName);
-  },
   limits: { fileSize: 5242880 }
 });

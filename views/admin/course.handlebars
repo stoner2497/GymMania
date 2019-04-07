@@ -1,0 +1,187 @@
+<aside class="right-side right-padding">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <!--section starts-->
+        <h2>Courses</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index-2.html">
+                    <i class="fa fa-fw fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">Course Schedule</a>
+            </li>
+            <li>
+                <a href="courses.html">Courses</a>
+            </li>
+        </ol>
+    </section>
+    <!--section ends-->
+    <div class="container-fluid">
+        <!--main content-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fa fa-fw fa-file-text-o"></i> Add Course
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable"></i>
+                            <i class="glyphicon glyphicon-remove removepanel"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="course_form" action="courses" method="POST" class="form-horizontal">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label for="course_name" class="col-md-3 control-label">
+                                                Course Name
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input id="course_name" type="text" name="name" value="{{name}}"
+                                                        class="form-control" placeholder="Enter Title">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="course_name" class="col-md-3 control-label">
+                                                Course Code
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-number"></i>
+                                                    </span>
+                                                    <input id="course_name" type="number" name="Number" value="{{Number}}"
+                                                        class="form-control" placeholder="Enter Title">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="course_duration" class="col-md-3 control-label">
+                                                Course Duration
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input id="course_duration" type="text" name="duration" value="duration"
+                                                        class="form-control" placeholder="Enter Course Duration eg: 6 months ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="course_price" class="col-md-3 control-label">
+                                                Course Price
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-usd" aria-hidden="true"></i>
+                                                    </span>
+                                                    <input id="course_price" type="text" name="Price" value="{{Price}}"
+                                                        class="form-control" placeholder="Enter Course Price">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">
+                                                Description
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <textarea class="summernote edi-css form-control" name="Description"
+                                                        value="{{Description}}"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-7">
+                                                <input type="submit" class="btn btn-primary" value="Add"> &nbsp;
+                                                <a class="btn btn-danger" href="admin_courseschedule.html"> Cancel</a>
+                                                <input type="reset" id="add-news-reset-editable" class="btn btn-default reset-styles"
+                                                    value="Reset">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Basic charts strats here-->
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fa fa-fw fa-file-text-o"></i> Courses
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable"></i>
+                            <i class="glyphicon glyphicon-remove removepanel"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-bordered" id="fitness-table">
+                            <thead>
+                                <tr>
+                                    <th>CODE</th>
+                                    <th>Course Name</th>
+                                    <th>Course Duration</th>
+                                    <th>Course Price</th>
+                                    <th>Edit/Save</th>
+                                    <th>Delete/Cancel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each courses}}
+                                <tr>
+                                    <td contenteditable="false">{{Number}}</td>
+                                    <td contenteditable="true">{{name}}</td>
+                                    <td contenteditable="true">{{duration}}</td>
+                                    <td contenteditable="true">{{Price}}</td>
+                                    <td>
+                                        <a class="edit btn btn-primary mar-bm" href="javascript:;">
+                                            <i class="fa fa-fw fa-edit"></i> Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="delete btn btn-danger mar-bm" href="javascript:;">
+                                            <i class="fa fa-trash-o"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- col-md-6 -->
+        <!--row -->
+        <!--row ends-->
+    </div>
+    <!-- /.content -->
+</aside>

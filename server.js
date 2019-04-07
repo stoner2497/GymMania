@@ -2,6 +2,7 @@ const express = require("express");
 const exhb = require("express-handlebars");
 const path = require("path");
 const methodOverride = require("method-override");
+require("dotenv").config();
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -85,8 +86,9 @@ app.use(methodOverride("_method"));
 //using routes
 const event = require("./routes/events");
 const courses = require("./routes/courses");
-
-app.use("/admin", admin, profile, package, event, courses);
+const Trainer = require("./routes/trainer");
+const user = require("./routes/users");
+app.use("/admin", admin, profile, package, event, courses, Trainer, user);
 
 app.listen(port, () => {
   console.log(`the server is runing on this ${port} shit...!!!`);

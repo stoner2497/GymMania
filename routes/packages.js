@@ -5,7 +5,7 @@ const multer = require("../config/multer");
 const router = express.Router();
 
 router.get("/packages", ensureAuthenticated, (req, res) => {
-  Packages.find({}).then(pack => {
+  Packages.find({ admin: req.user.id }).then(pack => {
     res.render("admin/packages", {
       pack: pack
     });

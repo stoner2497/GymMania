@@ -1,31 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const TrainerSchema = new Schema({
+const cousrseSchema = new Schema({
   admin: {
     type: String,
     required: true
   },
-  Name: {
+  Number: {
+    type: Number,
+    required: true
+  },
+  name: {
     type: String,
     required: true
   },
-  Age: {
-    type: Number,
-    required: true
-  },
-  salary: {
-    type: Number,
-    require: true
-  },
-  TrainerType: {
+  duration: {
     type: String,
     required: true
   },
-  contact: {
+  Price: {
     type: Number,
+    required: true
+  },
+  Description: {
+    type: String,
     required: true
   }
 });
 
-module.exports = Trainer = mongoose.model("trainer", TrainerSchema);
+module.exports = Courses = mongoose.model("course", cousrseSchema);

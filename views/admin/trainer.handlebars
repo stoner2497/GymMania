@@ -1,0 +1,191 @@
+<aside class="right-side right-padding">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <!--section starts-->
+        <h2>Trainers</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index-2.html">
+                    <i class="fa fa-fw fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">Course Schedule</a>
+            </li>
+            <li>
+                <a href="admin_trainers.html">Trainers</a>
+            </li>
+        </ol>
+    </section>
+    <!--section ends-->
+    <div class="container-fluid">
+        <!--main content-->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Basic charts strats here-->
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fa fa-fw fa-file-text-o"></i> Add Trainer
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable"></i>
+                            <i class="glyphicon glyphicon-remove removepanel"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="trainer" method="POST" class="form-horizontal" id="trainer">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="trainer1">
+                                                Trainer Name
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input type="text" name="Name" value="{{Name}}" id="trainer1" class="form-control"
+                                                        placeholder="Enter Name" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="trainer1">
+                                                Trainer Age
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input type="number" min="0" name="Age" value="{{Age}}" id="trainer1"
+                                                        class="form-control" placeholder="Enter age" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="trainer1">
+                                                Trainer Salary
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input type="number" min="0" name="salary" value="{{salary}}" id="trainer1"
+                                                        class="form-control" placeholder="Enter Salary" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="trainer1">
+                                                Trainer Type
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <select class="form-control" name="TrainerType" value={{TrainerType}}
+                                                        id="">
+                                                        <option value="public">Public</option>
+                                                        <option value="personal">Personal</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="trainer1">
+                                                Trainer Contact
+                                                <span class='require'>*</span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                                    </span>
+                                                    <input type="number" name="contact" value="{{contact}}" id="trainer1"
+                                                        class="form-control" placeholder="Enter contact" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-6">
+                                                <input type="submit" class="btn btn-primary" value="Add"> &nbsp;
+                                                <input type="button" class="btn btn-danger" value="Cancel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fa fa-fw fa-file-text-o"></i> Trainers
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable"></i>
+                            <i class="glyphicon glyphicon-remove removepanel"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-bordered" id="fitness-table1">
+                            <thead>
+                                <tr>
+                                    <th>Trainer Name</th>
+                                    <th>Trainer Age</th>
+                                    <th>salary</th>
+                                    <th>Trainer Type</th>
+                                    <th>Contact</th>
+                                    <th>Edit/Save</th>
+                                    <th>Delete/Cancel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each trainer}}
+                                <tr>
+                                    <td>{{Name}}</td>
+                                    <td contenteditable="true">{{Age}}</td>
+                                    <td contenteditable="true">{{salary}}</td>
+                                    <td contenteditable="true">{{TrainerType}}</td>
+                                    <td contenteditable="true">{{contact}}</td>
+                                    <td>
+                                        <a class=" edit btn btn-primary mar-bm" href="javascript:;">
+                                            <i class="fa fa-fw fa-edit"></i> Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="delete btn btn-danger mar-bm" href="javascript:;">
+                                            <i class="fa fa-trash-o"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- col-md-6 -->
+        <!--row -->
+        <!--row ends-->
+    </div>
+    <!-- /.content -->
+</aside>

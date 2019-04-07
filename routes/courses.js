@@ -5,9 +5,49 @@ const multer = require("../config/multer");
 const router = express.Router();
 
 const Schedule = require("../models/Schedule");
+const Courses = require("../models/Courses");
 
+let alpha = /^[a-zA-Z]+$/;
+let alphanum = /^[a-z\d\-_\s]+$/i;
 router.get("/courses", ensureAuthenticated, (req, res) => {
-  res.render("admin/courses");
+  Courses.find({ admin: req.user.id }).then(courses => {
+    res.render("admin/course", {
+      courses: courses
+    });
+  });
+});
+
+router.post("/courses", ensureAuthenticated, (req, res) => {
+  let errors = [];
+  if (alpha.test(req.body.name) === false) {
+    errors.push({ text: "please enter correct Course Name" });
+  }
+  if (alphanum.test(req.body.Description) === false) {
+    errors.push({ text: "please enter correct Description" });
+  }
+  if (errors.length > 0) {
+    res.render("admin/course", {
+      errors: errors
+    });
+  } else {
+    const newcourse = new Courses({
+      admin: req.user.id,
+      Number: req.body.Number,
+      name: req.body.name,
+      duration: req.body.duration,
+      Price: req.body.Price,
+      Description: req.body.Description
+    });
+
+    newcourse.save().then(err => {
+      req.flash("success_msg", "course added successfully");
+      res.redirect("courses");
+    });
+  }
+});
+
+router.get("/schedule", ensureAuthenticated, (req, res) => {
+  res.render("admin/coursesschedule");
 });
 
 router.post("/schedule", ensureAuthenticated, (req, res) => {

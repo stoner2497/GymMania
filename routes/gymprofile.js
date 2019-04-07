@@ -4,7 +4,7 @@ const regex = require("regex");
 const { ensureAuthenticated } = require("../helpers/auth");
 const router = express.Router();
 
-const regexcontact = /^\(?\d{3}\)?-?\s*-?\d{4}$/;
+const regexcontact = /^\d{10}$/;
 const regexpincode = /^\d{6}$/;
 const validurl = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/i;
 const alphanumeric = /^[a-z\d\-_\s]+$/i;
