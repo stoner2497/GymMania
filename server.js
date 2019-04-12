@@ -87,8 +87,21 @@ app.use(methodOverride("_method"));
 const event = require("./routes/events");
 const courses = require("./routes/courses");
 const Trainer = require("./routes/trainer");
-const user = require("./routes/users");
-app.use("/admin", admin, profile, package, event, courses, Trainer, user);
+const Customer = require("./routes/customer");
+const Gallery = require("./routes/gallery");
+const Settings = require("./routes/setting");
+app.use(
+  "/admin",
+  admin,
+  Settings,
+  profile,
+  package,
+  event,
+  courses,
+  Trainer,
+  Customer,
+  Gallery
+);
 
 app.listen(port, () => {
   console.log(`the server is runing on this ${port} shit...!!!`);

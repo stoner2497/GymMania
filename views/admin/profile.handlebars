@@ -1,0 +1,63 @@
+<aside class="right-side right-padding">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <!--section starts-->
+        <h2 class="section_h2_margin_top">User Profile</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index-2.html">
+                    <i class="fa fa-fw fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">Users</a>
+            </li>
+            <li>
+                <a href="admin_userprofile.html">User Profile</a>
+            </li>
+        </ol>
+    </section>
+    <!--section ends-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">User Profile</h5>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-sm-10">
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each user}}
+                                        <tr>
+                                            <td class="text-primary">Username</td>
+                                            <td>{{name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-primary">Email</td>
+                                            <td contenteditable="true">{{email}}</td>
+                                        </tr>
+
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.content -->
+</aside>

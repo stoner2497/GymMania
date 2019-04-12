@@ -42,27 +42,27 @@ router.post("/packages", ensureAuthenticated, (req, res) => {
   }
 });
 
-router.post("/edit", ensureAuthenticated, (req, res) => {
-  Packages.findOneAndUpdate(
-    { unique_code: req.unique_code },
-    {
-      $set: {
-        admin: req.user.id,
-        unique_code: req.body.unique_code,
-        packageName: req.body.packageName,
-        description: req.body.description,
-        amount: req.body.amount,
-        period: period
-      }
-    }
-  ).then(package => {
-    console.log(package);
-  });
-});
+// router.put("/edit/:id", ensureAuthenticated, (req, res) => {
+//   Packages.findOneAndUpdate(
+//     { _id: req.params.id },
+//     {
+//       $set: {
+//         admin: req.user.id,
 
-router.post("/delete", ensureAuthenticated, (req, res) => {
-  Packages.findOneAndDelete({ admin: req.user.id }).then(() => {
-    res.redirect("admin/packages");
+//         packageName: req.body.packageName,
+//         description: req.body.description,
+//         amount: req.body.amount,
+//         period: req.body.period
+//       }
+//     }
+//   ).then(package => {
+//     console.log(package);
+//   });
+// });
+
+router.delete("/packages/:id", ensureAuthenticated, (req, res) => {
+  Packages.findOneAndDelete({ _id: req.params.id }).then(() => {
+    res.render("admin/packages");
   });
 });
 module.exports = router;

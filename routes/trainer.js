@@ -48,4 +48,9 @@ router.post("/trainer", ensureAuthenticated, async (req, res) => {
   }
 });
 
+router.delete("/trainer/:id", ensureAuthenticated, (req, res) => {
+  Trainer.findOneAndDelete({ _id: req.params.id }).then(() => {
+    res.redirect("trainer");
+  });
+});
 module.exports = router;

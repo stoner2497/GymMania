@@ -80,9 +80,9 @@ router.post("/edit", ensureAuthenticated, (req, res) => {
   });
 });
 
-router.post("/delete", ensureAuthenticated, (req, res) => {
-  Packages.findOneAndDelete({ admin: req.user.id }).then(() => {
-    res.redirect("admin/packages");
+router.delete("/events/:id", ensureAuthenticated, (req, res) => {
+  Events.findOneAndDelete({ _id: req.params.id }).then(() => {
+    res.render("admin/events");
   });
 });
 module.exports = router;

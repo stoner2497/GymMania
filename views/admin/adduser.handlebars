@@ -114,24 +114,22 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-3 text-right">
+                                                <label class="col-md-3 control-label" for="pin">
                                                     Gender
                                                     <span class='require'>*</span>
                                                 </label>
                                                 <div class="col-md-7">
                                                     <div class="input-group">
-                                                        <label>
-                                                            <input class="radio_val" type="radio" name="Gender" value="{{male}}" />
-                                                            Male
-                                                        </label>
-                                                        <label class="pad-left">
-                                                            <input class="radio_val" type="radio" name="Gender" value="{{female}}" />
-                                                            Female
-                                                        </label>
-                                                        <label class="pad-left">
-                                                            <input class="radio_val" type="radio" name="Gender" value="{{others}}" />
-                                                            Other
-                                                        </label>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-plus text-primary"></i>
+                                                        </span>
+                                                        <select name="Gender" value="{{Gender}}" class="form-control"
+                                                            id="">
+
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +186,7 @@
                                             <div class="form-group">
                                                 <label class="control-label  col-md-3" for="select23">Courses</label>
                                                 <div class="col-md-7">
-                                                    <select id="select23" name="course" value="{{course}}" class="form-control js-states select2">
+                                                    <select id="select23" name="Course" value="{{Course}}" class="form-control js-states select2">
                                                         {{#each course}}
                                                         <option value="{{name}}">{{name}}</option>
                                                         {{/each}}
@@ -223,6 +221,22 @@
                                                         </span>
                                                         <input type="text" class="form-control" placeholder="Pending Amount"
                                                             id="pin" name="pendingAmount" value="{{pendingAmount}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label class="col-md-3 control-label" for="pin">
+                                                    Total Amount
+                                                    <span class='require'>*</span>
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-plus text-primary"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control" placeholder="Total Amount"
+                                                            id="pin" name="totalAmount" value="{{totalAmount}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,36 +275,31 @@
                         </div>
                         <div class="panel-body table-responsive">
                             <table class="table table-bordered" id="fitness-table">
-                                <thead>
-                                    <tr>
+                                <tr>
+                                    <thead>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Contact Number</th>
                                         <th>Status</th>
-                                        <th>Edit/Save</th>
                                         <th>Delete/Cancel</th>
-                                    </tr>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each user}}
+                                    {{#each cust}}
                                     <tr>
-                                        <td contenteditable="true">{{Username}}</td>
+                                        <td contenteditable="true">{{UserName}}</td>
                                         <td contenteditable="true">{{Email}}</td>
                                         <td contenteditable="true">{{contactNumber}}</td>
                                         {{#if pendingAmount}}
-                                        <td>Approved</td>
-                                        {{else}}
                                         <td>Pending</td>
+                                        {{else}}
+                                        <td>Approved</td>
                                         {{/if}}
                                         <td>
-                                            <a class="edit btn btn-primary" href="javascript:;">
-                                                <i class="fa fa-fw fa-edit"></i> Edit
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="delete btn btn-danger" href="javascript:;">
-                                                <i class="fa fa-trash-o"></i> Delete
-                                            </a>
+                                            <form action="adduser/{{id}}?_method=DELETE" method="post">
+                                                <button type="submit" class="btn btn-danger"> Delete </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     {{/each}}

@@ -81,9 +81,9 @@ router.post("/edit", ensureAuthenticated, (req, res) => {
   });
 });
 
-router.post("/delete", ensureAuthenticated, (req, res) => {
-  Packages.findOneAndDelete({ admin: req.user.id }).then(() => {
-    res.redirect("admin/packages");
+router.delete("/courses/:id", ensureAuthenticated, (req, res) => {
+  Courses.findOneAndDelete({ _id: req.params.id }).then(() => {
+    res.render("admin/coursess");
   });
 });
 module.exports = router;

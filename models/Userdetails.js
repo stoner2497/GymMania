@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  conatctNumber: {
+  contactNumber: {
     type: Number,
     required: true
   },
@@ -47,6 +47,10 @@ const UserSchema = new Schema({
     required: true
   },
   pendingAmount: {
+    type: Number,
+    default: null
+  },
+  totalAmount: {
     type: Number,
     required: true
   }

@@ -1,0 +1,66 @@
+<link type="text/css" href="../../public/vendors/fancyBox/source/jquery.fancybox8cbb.css?v=2.1.5" rel="stylesheet" />
+<link type="text/css" href="../../public/vendors/fancyBox/source/helpers/jquery.fancybox-buttons3447.css?v=1.0.5" rel="stylesheet" />
+<link type="text/css" href="../../public/css/custom_css/portfolio.css" rel="stylesheet" />
+<link type="text/css" href="../../public/css/custom_css/figcaption.css" rel="stylesheet">
+<aside class="right-side right-padding">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <!--section starts-->
+        <h2>Gallery</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="dashboard">
+                    <i class="fa fa-fw fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">Gallery</a>
+            </li>
+            <li>
+                <a href="gallery">Gallery</a>
+            </li>
+        </ol>
+    </div>
+    <!--section ends-->
+    <div class="container-fluid">
+        <!--main content-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+
+                </div>
+                <div class="gallery">
+                    <div class="row" id="gallery">
+                        {{#each pic}}
+                        <div class="mix category-3 col-lg-3 col-md-4 col-sm-4 col-xs-12" data-value="1">
+                            <div class="post3-main-div">
+                                <div class="box1 p1">
+                                    <div class="box-shadow">
+                                        <figure>
+                                            <figcaption>
+                                                <div class="hover-btn">
+                                                    <a href="{{image}}" class="hover-btn1 btn-h btn btn-primary boxer fancybox-buttons"
+                                                        data-fancybox-group="button">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+
+                                                </div>
+                                            </figcaption>
+                                            <div class="meet-img-hover">
+                                                <img src="{{image}}" style="    width: 191px;height: 164px;" class="fancy-img  center-block img-responsive"
+                                                    alt="meet-our-team" />
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+</aside>

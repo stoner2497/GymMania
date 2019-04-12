@@ -1,28 +1,27 @@
 const express = require("express");
-const { ensureAuthenticated } = require("../helpers/auth");
 const multer = require("../config/multer");
 const cloudinary = require("cloudinary");
+const { ensureAuthenticated } = require("../helpers/auth");
 const router = express.Router();
 
 require("../config/cloudinary");
-const Trainer = require("../models/Trainer");
+const Customer = require("../models/Userdetails");
 const Course = require("../models/Courses");
-const User = require("../models/Userdetails");
+const Trainer = require("../models/Trainer");
 
-router.get("/adduser", ensureAuthenticated, async (req, res) => {
-  Course.find({ admin: req.user.id }).then(course => {
-    User.find({ admin: req.user.id }).then(user => {
-      Trainer.find({ admin: req.user.id }).then(trainer => {
-        res.render("admin/adduser", {
+router.get("/adduser", ensureAuthenticated, (req, res) => {
+  Customer.find({ admin: req.user.id }).then(async cust => {
+    await Course.find({ admin: req.user.id }).then(async course => {
+      await Trainer.find({ admin: req.user.id }).then(async trainer => {
+        await res.render("admin/adduser", {
+          cust: cust,
           course: course,
-          user: user,
           trainer: trainer
         });
       });
     });
   });
 });
-
 router.post(
   "/adduser",
   multer.single("image"),
@@ -62,13 +61,14 @@ router.post(
           Course: req.body.Course,
           assignedTrainer: req.body.assignedTrainer,
           amount: req.body.amount,
-          pendingAmount: req.body.pendingAmount
+          pendingAmount: req.body.pendingAmount,
+          totalAmount: req.body.totalAmount
         });
         newUser
           .save()
           .then(() => {
             req.flash("success_msg", "successfully User added");
-            res.redirect("admin/adduser");
+            res.redirect("/adduser");
           })
           .catch(err => console.log(err));
       } catch (err) {
@@ -77,4 +77,19 @@ router.post(
     }
   }
 );
+
+router.get("/userpayment", ensureAuthenticated, (req, res) => {
+  Customer.find({ admin: req.user.id }).then(cust => {
+    res.render("admin/userpayment", {
+      cust: cust
+    });
+  });
+});
+
+router.delete("/adduser/:id", ensureAuthenticated, (req, res) => {
+  Customer.findOneAndDelete({ _id: req.params.id }).then(() => {
+    res.render("admin/adduser");
+  });
+});
+
 module.exports = router;

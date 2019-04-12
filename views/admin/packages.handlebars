@@ -91,17 +91,19 @@
                     <tbody>
                         {{#each pack}}
                         <tr>
-                            <td>{{packageName}}</td>
-                            <td>{{description}}</td>
-                            <td>{{amount}}</td>
-                            <td>{{period}} months</td>
+                            <td contenteditable="true">{{packageName}}</td>
+                            <td contenteditable="true">{{description}}</td>
+                            <td contenteditable="true">{{amount}}</td>
+                            <td contenteditable="true">{{period}} months</td>
                             <td>
-                                <form action="edit" method="post">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                {{!-- <form action="edit/{{id}}?_method=PUT" method="post">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" value="EDIT" class="btn btn-success">EDIT</button>
+                                </form> --}}
+                                <form action="packages/{{id}}?_method=DELETE" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
                                 </form>
-
-                                <i class="fa fa-trash-o" data-toggle="modal" data-target="#delete_pack" aria-hidden="true"></i>
-
                             </td>
                         </tr>
                         {{/each}}

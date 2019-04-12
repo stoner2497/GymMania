@@ -6,10 +6,6 @@ const PackageSchema = new Schema({
     type: String,
     required: true
   },
-  unique_code: {
-    type: Number,
-    required: true
-  },
   packageName: {
     type: String,
     required: true

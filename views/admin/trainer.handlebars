@@ -153,7 +153,6 @@
                                     <th>salary</th>
                                     <th>Trainer Type</th>
                                     <th>Contact</th>
-                                    <th>Edit/Save</th>
                                     <th>Delete/Cancel</th>
                                 </tr>
                             </thead>
@@ -166,14 +165,9 @@
                                     <td contenteditable="true">{{TrainerType}}</td>
                                     <td contenteditable="true">{{contact}}</td>
                                     <td>
-                                        <a class=" edit btn btn-primary mar-bm" href="javascript:;">
-                                            <i class="fa fa-fw fa-edit"></i> Edit
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="delete btn btn-danger mar-bm" href="javascript:;">
-                                            <i class="fa fa-trash-o"></i> Delete
-                                        </a>
+                                        <form action="trainer/{{id}}?_method=DELETE" method="post">
+                                            <button type="submit" class="btn btn-danger">DELETE</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 {{/each}}
